@@ -5,7 +5,7 @@ import Body from './Components/Body';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App text-white" style={{backgroundColor:"#0f1626"}}>
       <Header />
       <Body />
     </div>
