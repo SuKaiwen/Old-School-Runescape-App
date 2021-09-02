@@ -34,24 +34,42 @@ function Body() {
                 <div class="col-md-6 col-lg-8">
                     <h1 className="display-4">Stat overview</h1>
                     <hr></hr>
-                    <h1 className="display-6">Combat Stats</h1>
-
-                    <ul class = "list-group" style={{width:"200px"}}>
-                        <li class ="list-group-item list"><img src="https://oldschool.runescape.wiki/images/9/96/Hitpoints_icon.png?a4819" alt="health" /> Health: {monster.hitpoints} HP</li>
-                        <li class ="list-group-item list">pepe</li>
-                        <li class ="list-group-item list">pepe</li>
-                        <li class ="list-group-item list">pepe</li>
-                        <li class ="list-group-item list">pepe</li>
-                        <li class ="list-group-item list">pepe</li>
-                        <li class ="list-group-item list">pepe</li>
-                    </ul>
-                    <h1></h1>
-                    <h1></h1>
-                    <h1></h1>
-                    <h1></h1>
-                    <h1></h1>
-                    <h1></h1>
-                    <h1></h1>
+                    <h1 className="display-6" style = {{fontSize:"35px"}}>Combat Stats</h1>
+                    <div class = "row d-flex justify-content-center shadow-lg" style={{border:"1px solid #6b7a8f", borderRadius:"10px", padding:"20px"}}>
+                        <div class = "col-sm-6" style = {{textAlign:"left"}}>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/9/96/Hitpoints_icon.png?a4819" alt="health" /> Health: {monster.hitpoints}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/f/fe/Attack_icon.png?b4bce" alt="health" /> Attack: {monster.attack_level}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/b/b7/Defence_icon.png?ca0cd" alt="health" /> Defense: {monster.defence_level}</h1>
+                        </div>
+                        <div class = "col-sm-6" style = {{textAlign:"left"}}>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/1b/Strength_icon.png?e6e0c" alt="health" /> Strength: {monster.strength_level}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/5/5c/Magic_icon.png?334cf" alt="health" /> Magic: {monster.magic_level}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/19/Ranged_icon.png?01b0e" alt="health" /> Ranged: {monster.ranged_level}</h1>
+                        </div>
+                    </div>
+                    <div class = "row d-flex justify-content-center" style={{marginTop:"20px"}}>
+                        <div class = "col" style = {{textAlign:"left", padding:"20px"}}>
+                            <h1 className="display-6" style = {{fontSize:"35px"}}>Agressive Stats</h1>
+                            <hr></hr>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/f/fe/Attack_icon.png?b4bce" alt="health" /> Attack Bonus: {monster.attack_bonus}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/1b/Strength_icon.png?e6e0c" alt="health" /> Strength Bonus: {monster.strength_bonus}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/5/5c/Magic_icon.png?334cf" alt="health" /> Magic Bonus: {monster.magic_bonus}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/19/Ranged_icon.png?01b0e" alt="health" /> Ranged Bonus: {monster.ranged_bonus}</h1>
+                        </div>
+                        <div class = "col" style = {{textAlign:"left", padding:"20px"}}>
+                            <h1 className="display-6" style = {{fontSize:"35px"}}>Defensive Stats</h1>
+                            <hr></hr>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/3/36/Steel_dagger.png?f410d" alt="health" /> Stab Defense: {monster.defence_stab}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/7/78/Steel_scimitar.png?0395b" alt="health" /> Slash Defense: {monster.defence_slash}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/0/00/Steel_warhammer.png?1a4de" alt="health" /> Crush Defense: {monster.defence_crush}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/5/5c/Magic_icon.png?334cf" alt="health" /> Magic Defense: {monster.defence_magic}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/19/Ranged_icon.png?01b0e" alt="health" /> Ranged Defense: {monster.defence_ranged}</h1>
+                        </div>
+                    </div>
+                    <h1 className="display-6" style = {{fontSize:"35px"}}>Combat Stats</h1>
+                    <div class = "row d-flex justify-content-center" style={{padding:"20px"}}>
+                        <h1>pepe</h1>
+                    </div>
                 </div>
 
             </div>
