@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Body() {
     const [monster, setMonster] = useState([]);
+    const [masters, setMasters] = useState([]);
 
     useEffect(() => {
         getMonster();
@@ -13,25 +14,27 @@ function Body() {
         const data = await res.json();
         console.log(data._items[0]);
         await setMonster(data._items[0]);
+        setMasters(data._items[0].slayer_masters);
     }
 
     return (
         <div className="container">
             <div className = "row" style = {{marginTop:"200px"}}>
-                <div class="col-md-6 col-lg-4 px-9" style = {{alignItem:"center", justifyContent:"center", textAlign:"center"}}>
+                <div class="col-lg-4 px-9" style = {{alignItem:"center", justifyContent:"center", textAlign:"center"}}>
                     <img src = "https://oldschool.runescape.wiki/images/2/21/Abyssal_demon.png" style = {{width:"250px", height:"250px", backgroundColor:"#ab987a", borderRadius:"50%", border:"10px solid #f5f5f5"}}alt={monster.name} />
                     <h1 className="display-4">{monster.name}</h1>
                     <h1 className="display-4" style = {{fontSize:"25px"}}>{monster.combat_level}</h1>
                     <div style = {{textAlign:"left", marginTop:"30px"}}>
                         <h1 className="display-4" style = {{fontSize:"20px"}}>{monster.members ? "Members Only" : "Non Members"}</h1>
-                        <h1 className="display-4" style = {{fontSize:"20px"}}>Type: {monster.attributes[0]}</h1>
+
+                        <h1 className="display-4" style = {{fontSize:"20px"}}>Type: {monster.attributes}</h1>
                         <h1 className="display-4" style = {{fontSize:"20px"}}>Stance: {monster.aggressive ? "aggressive" : "non-aggressive"}</h1>
                         <h1 className="display-4" style = {{fontSize:"20px"}}>Size: {monster.size} tile</h1>
                         <h1 className="display-4" style = {{fontSize:"20px"}}>{monster.examine}</h1>
                         <h1 className="display-4" style = {{fontSize:"20px"}}>{monster.release_date}</h1>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-8">
+                <div class="col-lg-8">
                     <h1 className="display-4">Stat overview</h1>
                     <hr></hr>
                     <h1 className="display-6" style = {{fontSize:"35px"}}>Combat Stats</h1>
@@ -41,6 +44,7 @@ function Body() {
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/f/fe/Attack_icon.png?b4bce" alt="health" /> Attack: {monster.attack_level}</h1>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/b/b7/Defence_icon.png?ca0cd" alt="health" /> Defense: {monster.defence_level}</h1>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/c/ca/Poison_hitsplat.png?16146" alt="health" /> {monster.poisonous ? "Poisonous" : "Non-poisonous"}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/3/37/Venom_hitsplat.png?1977a" alt="health" /> {monster.venomous ? "Venomous" : "Non-venomous"}</h1>
                         </div>
                         <div class = "col-sm-6" style = {{textAlign:"left"}}>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/1b/Strength_icon.png?e6e0c" alt="health" /> Strength: {monster.strength_level}</h1>
@@ -69,10 +73,26 @@ function Body() {
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/19/Ranged_icon.png?01b0e" alt="health" /> Ranged Defense: {monster.defence_ranged}</h1>
                         </div>
                     </div>
-                    <h1 className="display-6" style = {{fontSize:"35px"}}>Combat Stats</h1>
-                    <div class = "row d-flex justify-content-center" style={{padding:"20px"}}>
-                        <h1>pepe</h1>
+                    <div class = "row d-flex justify-content-center" style={{marginTop:"20px"}}>
+                        <div class = "col" style = {{textAlign:"left", padding:"20px"}}>
+                            <h1 className="display-6" style = {{fontSize:"35px"}}>Slayer Info</h1>
+                            <hr></hr>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/2/28/Slayer_icon.png?cd34f" alt="health" /> Slayer Level: {monster.slayer_level}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/2/28/Slayer_icon.png?cd34f" alt="health" /> Slayer XP: {monster.slayer_xp}</h1>
+
+                        </div>
+                        <div class = "col" style = {{textAlign:"left", padding:"20px"}}>
+                            <h1 className="display-6" style = {{fontSize:"35px"}}>Slayer Tasks</h1>
+                            <hr></hr>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/2/28/Slayer_icon.png?cd34f" alt="health" /> Assigned by: </h1>
+                            <ul>
+                                {masters.map((master) =>
+                                    <li>{master}</li>
+                                )}
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
