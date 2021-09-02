@@ -40,11 +40,13 @@ function Body() {
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/9/96/Hitpoints_icon.png?a4819" alt="health" /> Health: {monster.hitpoints}</h1>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/f/fe/Attack_icon.png?b4bce" alt="health" /> Attack: {monster.attack_level}</h1>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/b/b7/Defence_icon.png?ca0cd" alt="health" /> Defense: {monster.defence_level}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/c/ca/Poison_hitsplat.png?16146" alt="health" /> {monster.poisonous ? "Poisonous" : "Non-poisonous"}</h1>
                         </div>
                         <div class = "col-sm-6" style = {{textAlign:"left"}}>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/1b/Strength_icon.png?e6e0c" alt="health" /> Strength: {monster.strength_level}</h1>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/5/5c/Magic_icon.png?334cf" alt="health" /> Magic: {monster.magic_level}</h1>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/19/Ranged_icon.png?01b0e" alt="health" /> Ranged: {monster.ranged_level}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/a/a6/Damage_hitsplat.png?1977a" alt="health" /> Max Hit: {monster.max_hit}</h1>
                         </div>
                     </div>
                     <div class = "row d-flex justify-content-center" style={{marginTop:"20px"}}>
@@ -55,6 +57,7 @@ function Body() {
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/1b/Strength_icon.png?e6e0c" alt="health" /> Strength Bonus: {monster.strength_bonus}</h1>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/5/5c/Magic_icon.png?334cf" alt="health" /> Magic Bonus: {monster.magic_bonus}</h1>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/1/19/Ranged_icon.png?01b0e" alt="health" /> Ranged Bonus: {monster.ranged_bonus}</h1>
+                            <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/8/8b/Dragon_scimitar.png?cc5f3" alt="health" /> Attack Types: {monster.attack_type}</h1>
                         </div>
                         <div class = "col" style = {{textAlign:"left", padding:"20px"}}>
                             <h1 className="display-6" style = {{fontSize:"35px"}}>Defensive Stats</h1>
