@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Body() {
     const [monster, setMonster] = useState([]);
     const [masters, setMasters] = useState([]);
+    const [drops, setDrops] = useState([]);
 
     useEffect(() => {
         getMonster();
@@ -15,6 +16,7 @@ function Body() {
         console.log(data._items[0]);
         await setMonster(data._items[0]);
         setMasters(data._items[0].slayer_masters);
+        setDrops(data._items[0].drops);
     }
 
     return (
@@ -92,9 +94,34 @@ function Body() {
                             </ul>
                         </div>
                     </div>
+                    <h1 className="display-6" style = {{fontSize:"35px"}}>Drops</h1>
+                    <div class = "row d-flex justify-content-center" style = {{textAlign:"left"}}>
+                        <table class = "table table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Quantity</th>
+                                    <th>Noted</th>
+                                    <th>Rarity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {drops.map((drop) =>
+                                    <tr>
+                                        <td>{drop.name}</td>
+                                        <td>{drop.quantity}</td>
+                                        <td>{drop.noted ? "Noted" : "Un-noted"}</td>
+                                        <td>1 in {(1 / drop.rarity).toFixed(0)}</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
 
+                        <div class = "col">
+
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     );
