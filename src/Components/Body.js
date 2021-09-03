@@ -16,7 +16,7 @@ function Body() {
         console.log(data._items[0]);
         await setMonster(data._items[0]);
         setMasters(data._items[0].slayer_masters);
-        setDrops(data._items[0].drops);
+        setDrops(data._items[0].drops.sort((a,b) => a.rarity < b.rarity ? 1 : -1));
     }
 
     return (
@@ -94,7 +94,8 @@ function Body() {
                             </ul>
                         </div>
                     </div>
-                    <h1 className="display-6" style = {{fontSize:"35px"}}>Drops</h1>
+                    <h1 className="display-6" style = {{fontSize:"35px"}}>Item Drop-Table</h1>
+                    <hr></hr>
                     <div class = "row d-flex justify-content-center" style = {{textAlign:"left"}}>
                         <table class = "table table-dark">
                             <thead>
@@ -102,6 +103,7 @@ function Body() {
                                     <th>Item Name</th>
                                     <th>Quantity</th>
                                     <th>Noted</th>
+                                    <th>Chance</th>
                                     <th>Rarity</th>
                                 </tr>
                             </thead>
@@ -112,14 +114,16 @@ function Body() {
                                         <td>{drop.quantity}</td>
                                         <td>{drop.noted ? "Noted" : "Un-noted"}</td>
                                         <td>1 in {(1 / drop.rarity).toFixed(0)}</td>
+                                        {(1 / drop.rarity).toFixed(0) == 1 ? (<td style = {{backgroundColor:"#00FFFF"}}>Always</td>) :
+                                            (1 / drop.rarity).toFixed(0) < 25 ? (<td style = {{backgroundColor:"#22dd22"}}>Common</td>) :
+                                            (1 / drop.rarity).toFixed(0) < 100 ? (<td style = {{backgroundColor:"#ffff00"}}>Uncommon</td>):
+                                            (1 / drop.rarity).toFixed(0) < 1000 ? (<td style = {{backgroundColor:"#ff0000"}}>Rare</td>) :
+                                            (<td style = {{backgroundColor:"#660000"}}>Super-Rare</td>)
+                                        }
                                     </tr>
                                 )}
                             </tbody>
                         </table>
-
-                        <div class = "col">
-
-                        </div>
                     </div>
                 </div>
             </div>
