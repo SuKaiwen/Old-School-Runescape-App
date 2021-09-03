@@ -2,21 +2,48 @@ import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Body() {
-    const [monster, setMonster] = useState([]);
+    const [monster, setMonster] = useState(null);
     const [masters, setMasters] = useState([]);
     const [drops, setDrops] = useState([]);
+    const [term, setTerm] = useState("Abyssal demon");
+    const [success, setSuccess] = useState();
 
     useEffect(() => {
         getMonster();
     }, []);
 
+    const handleChange = (event) => {
+        if(!event.target.value){
+            return;
+        }
+        console.log(event.target.value);
+        setTerm(event.target.value);
+    }
+
     const getMonster = async term => {
         const res = await fetch('https://api.osrsbox.com/monsters?where={ "name": "Abyssal demon", "duplicate": false }');
         const data = await res.json();
         console.log(data._items[0]);
-        await setMonster(data._items[0]);
+        setMonster(data._items[0]);
         setMasters(data._items[0].slayer_masters);
         setDrops(data._items[0].drops.sort((a,b) => a.rarity < b.rarity ? 1 : -1));
+    }
+
+    const searchMonster = async(event) => {
+        event.preventDefault();
+        const res = await fetch(`https://api.osrsbox.com/monsters?where={ "name": "${term}", "duplicate": false }`);
+        const data = await res.json();
+        if(data && data._items && data._items.length > 0) {
+           console.log(data._items[0]);
+           setMonster(data._items[0]);
+           setMasters(data._items[0].slayer_masters);
+           setDrops(data._items[0].drops.sort((a,b) => a.rarity < b.rarity ? 1 : -1));
+        }else{
+            setMonster(null);
+            setMasters([]);
+            setDrops([]);
+            return;
+        }
     }
 
     const sortList = (term) => {
@@ -33,12 +60,18 @@ function Body() {
             const arr = [].concat(drops).sort((a,b) => a.rarity > b.rarity ? 1 : -1);
             setDrops(arr);
         }
-
     }
 
     return (
         <div className="container">
-            <div className = "row" style = {{marginTop:"200px"}}>
+            <form onSubmit={(event) => searchMonster(event)}>
+                <label>
+                    Search: <textarea onChange={handleChange} />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+            {(monster) ?
+            (<div className = "row" style = {{marginTop:"200px"}}>
                 <div class="col-lg-4 px-9" style = {{alignItem:"center", justifyContent:"center", textAlign:"center"}}>
                     <img src = "https://oldschool.runescape.wiki/images/2/21/Abyssal_demon.png" style = {{width:"250px", height:"250px", backgroundColor:"#ab987a", borderRadius:"50%", border:"10px solid #f5f5f5"}}alt={monster.name} />
                     <h1 className="display-4">{monster.name}</h1>
@@ -156,7 +189,10 @@ function Body() {
                         </table>
                     </div>
                 </div>
-            </div>
+            </div>) : (
+                <h1>no monster</h1>
+            )
+            }
         </div>
     );
 }
