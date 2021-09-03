@@ -19,6 +19,23 @@ function Body() {
         setDrops(data._items[0].drops.sort((a,b) => a.rarity < b.rarity ? 1 : -1));
     }
 
+    const sortList = (term) => {
+        if (term === "a asc"){
+            const arr = [].concat(drops).sort((a,b) => a.name > b.name ? 1 : -1);
+            setDrops(arr);
+        }else if (term === "a dsc"){
+            const arr = [].concat(drops).sort((a,b) => a.name < b.name ? 1 : -1);
+            setDrops(arr);
+        }else if (term === "r asc"){
+            const arr = [].concat(drops).sort((a,b) => a.rarity < b.rarity ? 1 : -1);
+            setDrops(arr);
+        }else if (term === "r dsc"){
+            const arr = [].concat(drops).sort((a,b) => a.rarity > b.rarity ? 1 : -1);
+            setDrops(arr);
+        }
+
+    }
+
     return (
         <div className="container">
             <div className = "row" style = {{marginTop:"200px"}}>
@@ -94,7 +111,20 @@ function Body() {
                             </ul>
                         </div>
                     </div>
-                    <h1 className="display-6" style = {{fontSize:"35px"}}>Item Drop-Table</h1>
+                    <div class = "row">
+                        <div class = "col-6">
+                            <h1 className="display-6" style = {{fontSize:"35px", textAlign:"left"}}>Item Drop-Table</h1>
+                        </div>
+                        <div class = "col-6" style = {{textAlign:"left"}}>
+                            <select className="ml-10 my-2 p-2 shadow-md rounded-md font-medium" onChange={ val => sortList(val.target.value)}>
+                                <option value="">Sort by...</option>
+                                <option value="a asc">Alphabet (asc)</option>
+                                <option value="a dsc">Alphabet (dsc)</option>
+                                <option value="r asc">Rarity (asc)</option>
+                                <option value="r dsc">Rarity (dsc)</option>
+                            </select>
+                        </div>
+                    </div>
                     <hr></hr>
                     <div class = "row d-flex justify-content-center" style = {{textAlign:"left"}}>
                         <table class = "table table-dark">
