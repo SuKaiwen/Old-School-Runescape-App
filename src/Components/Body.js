@@ -17,7 +17,7 @@ function Body() {
             return;
         }
         console.log(event.target.value);
-        setTerm(event.target.value);
+        setTerm(event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1));
     }
 
     const getMonster = async term => {
@@ -66,7 +66,7 @@ function Body() {
         <div className="container">
             <form onSubmit={(event) => searchMonster(event)}>
                 <label>
-                    Search: <textarea onChange={handleChange} />
+                    Search: <input onChange={handleChange} />
                 </label>
                 <input type="submit" value="Submit" />
             </form>
@@ -190,7 +190,10 @@ function Body() {
                     </div>
                 </div>
             </div>) : (
-                <h1>no monster</h1>
+                <div style = {{height:"100vh", margin:"auto"}}>
+                    <h1 className = "display-6">Woops! Something went wrong.</h1>
+                    <h1 className = "display-5">No monster of name: "{term}"</h1>
+                </div>
             )
             }
         </div>
