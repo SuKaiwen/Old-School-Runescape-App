@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DpsCalc from './DpsCalc';
 
 function Body() {
     const [monster, setMonster] = useState(null);
@@ -144,6 +145,15 @@ function Body() {
                             </ul>
                         </div>
                     </div>
+                    <DpsCalc
+                        defence={monster.defence_level}
+                        magic={monster.magic_level}
+                        slashDefence={monster.defence_slash}
+                        stabDefence={monster.defence_stab}
+                        crushDefence={monster.defence_crush}
+                        magicDefence={monster.defence_magic}
+                        rangedDefence={monster.defence_ranged}
+                    />
                     <div class = "row">
                         <div class = "col-6">
                             <h1 className="display-6" style = {{fontSize:"35px", textAlign:"left"}}>Item Drop-Table</h1>
