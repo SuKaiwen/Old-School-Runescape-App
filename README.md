@@ -18,3 +18,8 @@ See the monster's full item drop table with multiple sorting options:
 Project as seen on Desktop Mode: 
 
 ![image](https://user-images.githubusercontent.com/56058518/132081840-0387bf67-0979-4a62-bf1b-c59bc613eec1.png)
+
+Example of searching for a monster:
+
+![image](https://user-images.githubusercontent.com/56058518/132081967-6e8b895f-07af-4db9-963b-55172185f607.png)
+
