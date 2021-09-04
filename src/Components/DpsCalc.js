@@ -3,8 +3,6 @@ import MeleeWeapons from './MeleeWeapons';
 
 const DpsCalc = ({defence, magic, slashDefence, stabDefence, crushDefence, magicDefence, rangedDefence}) => {
     const [weapon, setWeapon] = useState();
-    const [dps, setDps] = useState();
-    const [maxHit, setMaxHit] = useState();
 
     const meleeMaxHit = (strength, strBonus) => {
         return ((1.3 + (strength/10) + (strBonus/80)) + (strength*strBonus)/640).toFixed(0);

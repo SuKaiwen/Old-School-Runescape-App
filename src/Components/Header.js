@@ -3,7 +3,7 @@ import React from 'react';
 function Header() {
   return (
     <div className="App">
-      <h1>Header</h1>
+      <h1 className = "display-5">OSRS Beastiary</h1>
     </div>
   );
 }

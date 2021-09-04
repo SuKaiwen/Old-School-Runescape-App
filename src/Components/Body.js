@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import DpsCalc from './DpsCalc';
 
 function Body() {
@@ -74,13 +73,13 @@ function Body() {
             {(monster) ?
             (<div className = "row" style = {{marginTop:"200px"}}>
                 <div class="col-lg-4 px-9" style = {{alignItem:"center", justifyContent:"center", textAlign:"center"}}>
-                    <img src = "https://oldschool.runescape.wiki/images/2/21/Abyssal_demon.png" style = {{width:"250px", height:"250px", backgroundColor:"#ab987a", borderRadius:"50%", border:"10px solid #f5f5f5"}}alt={monster.name} />
+                    <img src = "https://oldschool.runescape.wiki/images/b/bc/Zulrah_%28serpentine%29.png?29a54" style = {{width:"250px", height:"250px", backgroundColor:"#ab987a", borderRadius:"50%", border:"10px solid #f5f5f5"}}alt={monster.name} />
                     <h1 className="display-4">{monster.name}</h1>
                     <h1 className="display-4" style = {{fontSize:"25px"}}>{monster.combat_level}</h1>
                     <div style = {{textAlign:"left", marginTop:"30px"}}>
                         <h1 className="display-4" style = {{fontSize:"20px"}}>{monster.members ? "Members Only" : "Non Members"}</h1>
 
-                        <h1 className="display-4" style = {{fontSize:"20px"}}>Type: {monster.attributes}</h1>
+                        {monster.attributes.length > 0 ? <h1 className="display-4" style = {{fontSize:"20px"}}>Type: {monster.attributes}</h1> : <h1 className="display-4" style = {{fontSize:"20px"}}>Type: Standard</h1>}
                         <h1 className="display-4" style = {{fontSize:"20px"}}>Stance: {monster.aggressive ? "aggressive" : "non-aggressive"}</h1>
                         <h1 className="display-4" style = {{fontSize:"20px"}}>Size: {monster.size} tile</h1>
                         <h1 className="display-4" style = {{fontSize:"20px"}}>{monster.examine}</h1>
