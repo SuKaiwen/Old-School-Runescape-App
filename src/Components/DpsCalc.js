@@ -4,6 +4,22 @@ import MeleeWeapons from './MeleeWeapons';
 const DpsCalc = ({defence, magic, slashDefence, stabDefence, crushDefence, magicDefence, rangedDefence}) => {
     const [weapon, setWeapon] = useState();
 
+    const meleeMaxHit = (strength, strBonus) => {
+        return ((1.3 + (strength/10) + (strBonus/80)) + (strength*strBonus)/640).toFixed(0);
+    }
+
+    const DPS = (maxHit, speed, accuracy, monsterDef) => {
+        var averageDamage = ((maxHit / 2) / speed).toFixed(2);
+        var trueAcc = accuracy + 107;
+        if(trueAcc > monsterDef){
+            var chanceToHit = (1 - (monsterDef+2)/(2*(trueAcc+1)));
+            return (averageDamage*chanceToHit).toFixed(2);
+        }else{
+            var chanceToHit = (trueAcc/(2*(monsterDef+1)));
+            return (averageDamage*chanceToHit).toFixed(2);
+        }
+    }
+
     const selectWeapon = (val) => {
         switch(val){
             case 'a':
@@ -49,14 +65,28 @@ const DpsCalc = ({defence, magic, slashDefence, stabDefence, crushDefence, magic
                     </select>
                 </div>
             </div>
-            {weapon ? <h1>{weapon.name}</h1> : "No Weapon"}
-            <h1>Defence: {defence}</h1>
-            <h1>Magic: {magic}</h1>
-            <h1>Defence: {slashDefence}</h1>
-            <h1>Defence: {stabDefence}</h1>
-            <h1>Defence: {crushDefence}</h1>
-            <h1>Defence: {magicDefence}</h1>
-            <h1>Defence: {rangedDefence}</h1>
+            {weapon ? (
+                <div class = "row d-flex justify-content-center" style={{marginTop:"20px"}}>
+                    <div class = "col" style = {{textAlign:"left", padding:"20px"}}>
+                        <h1 className="display-6" style = {{fontSize:"35px"}}>{weapon.name}</h1>
+                        <hr></hr>
+                        <p>Total acc: {weapon.acc + 78}</p>
+                        <p>Total str: {weapon.str + 43}</p>
+                        <p>Your max hit is: {meleeMaxHit(99,weapon.str+43)}</p>
+                        <p>Assumed Equipment:
+                            <img src="https://oldschool.runescape.wiki/images/3/3b/Avernic_defender.png?e4676" alt="avernic" />
+                            <img src="https://oldschool.runescape.wiki/images/b/bf/Barrows_gloves.png?3be33" alt="bgloves" />
+                            <img src="https://oldschool.runescape.wiki/images/4/41/Amulet_of_torture.png?ec289" alt="torture" />
+                            <img src="https://oldschool.runescape.wiki/images/4/42/Primordial_boots.png?e2ec4" alt="prims" />
+                        </p>
+                    </div>
+                    <div class = "col" style = {{textAlign:"left", padding:"20px"}}>
+                        <h1 className="display-6" style = {{fontSize:"35px"}}>DPS</h1>
+                        <hr></hr>
+                        <p style={{fontSize:"50px"}}>{DPS(meleeMaxHit(99, weapon.str+43), weapon.speed, weapon.acc + 78, defence+slashDefence)}</p>
+                    </div>
+                </div>
+            ) : "No Weapon"}
         </>
     )
 }

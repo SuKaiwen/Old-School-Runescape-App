@@ -132,7 +132,6 @@ function Body() {
                             <hr></hr>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/2/28/Slayer_icon.png?cd34f" alt="health" /> Slayer Level: {monster.slayer_level}</h1>
                             <h1 className="display-4" style = {{fontSize:"25px"}}><img src="https://oldschool.runescape.wiki/images/2/28/Slayer_icon.png?cd34f" alt="health" /> Slayer XP: {monster.slayer_xp}</h1>
-
                         </div>
                         <div class = "col" style = {{textAlign:"left", padding:"20px"}}>
                             <h1 className="display-6" style = {{fontSize:"35px"}}>Slayer Tasks</h1>

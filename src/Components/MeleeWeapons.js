@@ -17,7 +17,7 @@ const MeleeWeapons = [
         name: "Abyssal Whip",
         type: "Slash",
         acc: 82,
-        str: 62,
+        str: 82,
         speed: 2.4,
     },
     {
