@@ -3,6 +3,8 @@ import MeleeWeapons from './MeleeWeapons';
 
 const DpsCalc = ({defence, magic, slashDefence, stabDefence, crushDefence, magicDefence, rangedDefence}) => {
     const [weapon, setWeapon] = useState();
+    const [dps, setDps] = useState();
+    const [maxHit, setMaxHit] = useState();
 
     const meleeMaxHit = (strength, strBonus) => {
         return ((1.3 + (strength/10) + (strBonus/80)) + (strength*strBonus)/640).toFixed(0);
@@ -13,10 +15,10 @@ const DpsCalc = ({defence, magic, slashDefence, stabDefence, crushDefence, magic
         var trueAcc = accuracy + 107;
         if(trueAcc > monsterDef){
             var chanceToHit = (1 - (monsterDef+2)/(2*(trueAcc+1)));
-            return (averageDamage*chanceToHit).toFixed(2);
+            return [(averageDamage*chanceToHit).toFixed(2), (averageDamage*chanceToHit*1.166).toFixed(2)];
         }else{
             var chanceToHit = (trueAcc/(2*(monsterDef+1)));
-            return (averageDamage*chanceToHit).toFixed(2);
+            return [(averageDamage*chanceToHit).toFixed(2), (averageDamage*chanceToHit*1.166).toFixed(2)];
         }
     }
 
@@ -71,19 +73,22 @@ const DpsCalc = ({defence, magic, slashDefence, stabDefence, crushDefence, magic
                         <h1 className="display-6" style = {{fontSize:"35px"}}>{weapon.name}</h1>
                         <hr></hr>
                         <p>Total acc: {weapon.acc + 78}</p>
-                        <p>Total str: {weapon.str + 43}</p>
-                        <p>Your max hit is: {meleeMaxHit(99,weapon.str+43)}</p>
+                        <p>Total str: {weapon.str + 49}</p>
+                        <p>Your max hit is: {meleeMaxHit(99,weapon.str+49)}</p>
                         <p>Assumed Equipment:
                             <img src="https://oldschool.runescape.wiki/images/3/3b/Avernic_defender.png?e4676" alt="avernic" />
                             <img src="https://oldschool.runescape.wiki/images/b/bf/Barrows_gloves.png?3be33" alt="bgloves" />
                             <img src="https://oldschool.runescape.wiki/images/4/41/Amulet_of_torture.png?ec289" alt="torture" />
                             <img src="https://oldschool.runescape.wiki/images/4/42/Primordial_boots.png?e2ec4" alt="prims" />
+                            <img src="https://oldschool.runescape.wiki/images/5/5d/Bandos_tassets.png?f928c" alt="tassets" />
+                            <img src="https://oldschool.runescape.wiki/images/2/2e/Bandos_chestplate.png?f928c" alt="bcp" />
                         </p>
                     </div>
                     <div class = "col" style = {{textAlign:"left", padding:"20px"}}>
                         <h1 className="display-6" style = {{fontSize:"35px"}}>DPS</h1>
                         <hr></hr>
-                        <p style={{fontSize:"50px"}}>{DPS(meleeMaxHit(99, weapon.str+43), weapon.speed, weapon.acc + 78, defence+slashDefence)}</p>
+                        <p style={{fontSize:"50px"}}>{DPS(meleeMaxHit(99, weapon.str+49), weapon.speed, weapon.acc + 78, defence+slashDefence)[0]}</p>
+                        <p style={{fontSize:"50px"}}>{DPS(meleeMaxHit(99, weapon.str+49), weapon.speed, weapon.acc + 78, defence+slashDefence)[1]} <img src="https://oldschool.runescape.wiki/images/f/f6/Slayer_helmet.png?7fb98" alt = "slayerhelm" style={{width:"35px", height:"40px"}}/></p>
                     </div>
                 </div>
             ) : "No Weapon"}
